@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const path  = require('path');
 const { logger } = require('./middleware/logEvent')
+const cors = require('cors');
+const errorHandler = require('./middleware/errorHandler');
 
 const PORT = process.env.PORT || 3500
 
@@ -20,6 +22,23 @@ app.use(express.json())
 app.use(express.static('./public'))
 
 
+
+const whiteList = ['https://www.abudullsite.com', 'http://127.0.0.1:3000', 'http://localhost:3500']
+corsOption = {
+    origin: (origin, callback) => {
+        if(whiteList.indexOf(origin) !== -1 || !origin) {
+            callback(null, true)
+        }else{
+            callback(new Error('not allowed by CORS'))
+        }
+
+    },
+    optionSuccessStatus: 200
+} 
+
+app.use(cors(corsOption))
+
+
 app.get('^/$|index(.html)?', (req, res) => {
     // res.sendFile('./views/index.html', {root: __dirname})
     res.sendFile(path.join(__dirname, 'views', 'index.html'))
@@ -35,8 +54,15 @@ app.get('/old-page.html', (req, res) => {
 })
 
 // catch all routes to get error 404 page
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', '404.html'))
+app.all('*', (req, res) => {
+    res.status(404);
+    if(req.accepts('html')) {
+        res.sendFile(path.join(__dirname, 'views', '404.html'))
+    }else if(req.accepts('json')) {
+        res.join(({Error: '404 Not Found'}))
+    }else {
+        res.type('txt').send('404 not found')
+    }
 })
 
 // application level middleware
@@ -70,6 +96,7 @@ app.get('/*', (req, res) => {
 
 // app.get('/', requests)
 
+app.use(errorHandler) 
 
 app.listen(PORT, () => {
     console.log(`server listening ${PORT}`)

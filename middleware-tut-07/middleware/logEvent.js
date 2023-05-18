@@ -9,16 +9,16 @@ const path = require('path')
 
 const logEvent = async (message, logFileName) => {
     const dateTime = format(new Date(), 'yyyy-mm-dd\t\tHH:mm:ss');
-    const logItems = `${dateTime}\t ${uuid()}\t${message}`
+    const logItems = `${dateTime}\t ${uuid()}\t${message}\n`
     
 
     try {
         if(!fs.existsSync(path.join(__dirname, '..', 'directory'))) {
             fs.mkdir(path.join(__dirname, '..', 'directory'), (err) => {
                 if (err) throw err;
-                console.log("directory created successfully")
+                // console.log("directory created successfully")
             })
-        }else console.log('IDAN don dey already')
+        }
         await fsPromises.appendFile(path.join(__dirname, '..', 'directory', logFileName ), logItems)
 
     } catch (error) {
