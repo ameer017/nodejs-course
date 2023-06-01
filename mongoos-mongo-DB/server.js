@@ -34,8 +34,6 @@ app.use(express.urlencoded({ extended: false }));
 // built-in middleware for json
 app.use(express.json());
 
-//middleware for cookies
-app.use(cookieParser());
 
 //serve static files
 app.use("/", express.static(path.join(__dirname, "/public")));
@@ -49,6 +47,9 @@ app.use("/logout", require("./routes/logout"));
 
 app.use(verifyJWT);
 app.use("/employees", require("./routes/api/employees"));
+
+//middleware for cookies
+app.use(cookieParser());
 
 app.all("*", (req, res) => {
   res.status(404);
@@ -64,7 +65,7 @@ app.all("*", (req, res) => {
 app.use(errorHandler);
 
 mongoose.connection.once('open', () => {
-  console.log(`Connection to mongoDB is succesful ✅`)
+  console.log(`Connection to mongoDB is succesfull ✅`)
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 })
 

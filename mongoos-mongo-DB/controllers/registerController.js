@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
 const handleNewUser = async (req, res) => {
@@ -18,9 +18,7 @@ const handleNewUser = async (req, res) => {
     const result = await User.create({
       username: user,
       password: hashedPwd,
-    });
-
-    // User.setUsers([...User.users, newUser]);
+    })
     
     console.log(result);
     res.status(201).json({ success: `New user ${user} created!` });

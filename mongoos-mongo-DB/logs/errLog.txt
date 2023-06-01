@@ -1,1 +1,9 @@
 2023-05-30		11:47:23	113f4a41-f337-4dfa-b1e8-3c1a76a2f9b8	 SyntaxError: Expected ',' or '}' after property value in JSON at position 36 
+2023-05-31		15:21:06	c94019ed-015b-40a6-8f08-55482019d1e6	 TypeError: Cannot read properties of undefined (reading 'username') 
+2023-06-01		10:01:36	3a824619-6fea-4278-8fd8-3df5ec063e5f	 TypeError: Cannot read properties of undefined (reading 'username') 
+2023-06-01		10:03:09	1d58872c-07c8-4970-9a68-14d51bc98831	 TypeError: Cannot read properties of undefined (reading 'username') 
+2023-06-01		10:09:09	d88c703f-b76d-47bb-9565-a9a0719049b3	 TypeError: Cannot read properties of undefined (reading 'username') 
+2023-06-01		10:10:56	b2ef3915-bc61-4389-93b0-c56de6120cf1	 TypeError: Cannot read properties of undefined (reading 'roles') 
+2023-06-01		10:14:37	5363fcf8-dff4-4729-be56-337e02908c02	 TypeError: Cannot read properties of undefined (reading 'username') 
+2023-06-01		10:14:41	b06a6c0e-b0ad-4b26-97cb-b8f420bbbd1c	 TypeError: Cannot read properties of undefined (reading 'username') 
+2023-06-01		10:26:59	720bcc85-f356-403b-ba93-21d5c610a136	 SyntaxError: Expected double-quoted property name in JSON at position 42 
